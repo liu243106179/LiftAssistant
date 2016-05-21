@@ -1,29 +1,28 @@
 package com.example.richie.liftassistant.bean;
 
 
+import java.util.List;
+
 /**
  * Created by richie on 2016/5/21.
  */
 
 public class WeChatFeaturedResult {
 
-
     /**
      * showapi_res_code : 0
      * showapi_res_error :
-     * showapi_res_body : {"0":{"description":"满婷神皂","picUrl":"http://zxpic.gtimg.com/infonew/0/wechat_pics_-568467.jpg/640","title":"夏天这几件事儿千万不要做","url":"http://mp.weixin.qq.com/s?__biz=MjM5MDQzOTg0Ng==&idx=1&mid=207874755&sn=15175c644e4fd478d19649a62446e453&qb_mtt_show_type=1"},"code":200,"msg":"ok"}
+     * showapi_res_body : {"pagebean":{"allNum":5961,"allPages":299,"contentlist":[{"contentImg":"http://mmbiz.qpic.cn/mmbiz/e5DwVY6II2ZdcrTjryOw0ibOOTEh7nXI88VxM9m9pzia8pEVEzicUfibL7aGUcdQ2AXb8ahO90icqAiaqiczCiahE4Gzbg/0?wx_fmt=jpeg","date":"08月06日","id":"55c3b1096e36e0e8c3953012","title":"纽约梦丨欲求翻身，任重道远","typeId":"19","typeName":"体育迷","url":"http://mp.weixin.qq.com/s?__biz=MzA3MTgyNjcxMA==&mid=211970632&idx=1&sn=cbc03c2911bbf981f455dd161526029c&3rd=MzA3MDU4NTYzMw==&scene=6#rd","userLogo":"http://app1.showapi.com/weixin_info/287c5d08-0a52-4001-8e0c-8ed1222fa44d.jpg","userLogo_code":"http://app1.showapi.com/weixin_info/0327beff-34d8-49d4-9dcc-cdbba069c730.jpg","userName":"篮球先锋报"}],"currentPage":1,"maxResult":20},"ret_code":0}
      */
 
     private int showapi_res_code;
     private String showapi_res_error;
+    /**
+     * pagebean : {"allNum":5961,"allPages":299,"contentlist":[{"contentImg":"http://mmbiz.qpic.cn/mmbiz/e5DwVY6II2ZdcrTjryOw0ibOOTEh7nXI88VxM9m9pzia8pEVEzicUfibL7aGUcdQ2AXb8ahO90icqAiaqiczCiahE4Gzbg/0?wx_fmt=jpeg","date":"08月06日","id":"55c3b1096e36e0e8c3953012","title":"纽约梦丨欲求翻身，任重道远","typeId":"19","typeName":"体育迷","url":"http://mp.weixin.qq.com/s?__biz=MzA3MTgyNjcxMA==&mid=211970632&idx=1&sn=cbc03c2911bbf981f455dd161526029c&3rd=MzA3MDU4NTYzMw==&scene=6#rd","userLogo":"http://app1.showapi.com/weixin_info/287c5d08-0a52-4001-8e0c-8ed1222fa44d.jpg","userLogo_code":"http://app1.showapi.com/weixin_info/0327beff-34d8-49d4-9dcc-cdbba069c730.jpg","userName":"篮球先锋报"}],"currentPage":1,"maxResult":20}
+     * ret_code : 0
+     */
 
-    public ShowapiResBodyBean getShowapi_res_body() {
-        return showapi_res_body;
-    }
-
-    public void setShowapi_res_body(ShowapiResBodyBean showapi_res_body) {
-        this.showapi_res_body = showapi_res_body;
-    }
+    private ShowapiResBodyBean showapi_res_body;
 
     public int getShowapi_res_code() {
         return showapi_res_code;
@@ -41,51 +40,194 @@ public class WeChatFeaturedResult {
         this.showapi_res_error = showapi_res_error;
     }
 
-    /**
-     * 0 : {"description":"满婷神皂","picUrl":"http://zxpic.gtimg.com/infonew/0/wechat_pics_-568467.jpg/640","title":"夏天这几件事儿千万不要做","url":"http://mp.weixin.qq.com/s?__biz=MjM5MDQzOTg0Ng==&idx=1&mid=207874755&sn=15175c644e4fd478d19649a62446e453&qb_mtt_show_type=1"}
-     * code : 200
-     * msg : ok
-     */
+    public ShowapiResBodyBean getShowapi_res_body() {
+        return showapi_res_body;
+    }
 
+    public void setShowapi_res_body(ShowapiResBodyBean showapi_res_body) {
+        this.showapi_res_body = showapi_res_body;
+    }
 
-    public ShowapiResBodyBean showapi_res_body;
+    public static class ShowapiResBodyBean {
+        /**
+         * allNum : 5961
+         * allPages : 299
+         * contentlist : [{"contentImg":"http://mmbiz.qpic.cn/mmbiz/e5DwVY6II2ZdcrTjryOw0ibOOTEh7nXI88VxM9m9pzia8pEVEzicUfibL7aGUcdQ2AXb8ahO90icqAiaqiczCiahE4Gzbg/0?wx_fmt=jpeg","date":"08月06日","id":"55c3b1096e36e0e8c3953012","title":"纽约梦丨欲求翻身，任重道远","typeId":"19","typeName":"体育迷","url":"http://mp.weixin.qq.com/s?__biz=MzA3MTgyNjcxMA==&mid=211970632&idx=1&sn=cbc03c2911bbf981f455dd161526029c&3rd=MzA3MDU4NTYzMw==&scene=6#rd","userLogo":"http://app1.showapi.com/weixin_info/287c5d08-0a52-4001-8e0c-8ed1222fa44d.jpg","userLogo_code":"http://app1.showapi.com/weixin_info/0327beff-34d8-49d4-9dcc-cdbba069c730.jpg","userName":"篮球先锋报"}]
+         * currentPage : 1
+         * maxResult : 20
+         */
 
-    public static class  ShowapiResBodyBean{
-        private String description;
-        private String picUrl;
-        private String title;
-        private String url;
+        private PagebeanBean pagebean;
+        private int ret_code;
 
-        public String getDescription() {
-            return description;
+        public PagebeanBean getPagebean() {
+            return pagebean;
         }
 
-        public void setDescription(String description) {
-            this.description = description;
+        public void setPagebean(PagebeanBean pagebean) {
+            this.pagebean = pagebean;
         }
 
-        public String getPicUrl() {
-            return picUrl;
+        public int getRet_code() {
+            return ret_code;
         }
 
-        public void setPicUrl(String picUrl) {
-            this.picUrl = picUrl;
+        public void setRet_code(int ret_code) {
+            this.ret_code = ret_code;
         }
 
-        public String getTitle() {
-            return title;
-        }
+        public static class PagebeanBean {
+            private int allNum;
+            private int allPages;
+            private int currentPage;
+            private int maxResult;
+            /**
+             * contentImg : http://mmbiz.qpic.cn/mmbiz/e5DwVY6II2ZdcrTjryOw0ibOOTEh7nXI88VxM9m9pzia8pEVEzicUfibL7aGUcdQ2AXb8ahO90icqAiaqiczCiahE4Gzbg/0?wx_fmt=jpeg
+             * date : 08月06日
+             * id : 55c3b1096e36e0e8c3953012
+             * title : 纽约梦丨欲求翻身，任重道远
+             * typeId : 19
+             * typeName : 体育迷
+             * url : http://mp.weixin.qq.com/s?__biz=MzA3MTgyNjcxMA==&mid=211970632&idx=1&sn=cbc03c2911bbf981f455dd161526029c&3rd=MzA3MDU4NTYzMw==&scene=6#rd
+             * userLogo : http://app1.showapi.com/weixin_info/287c5d08-0a52-4001-8e0c-8ed1222fa44d.jpg
+             * userLogo_code : http://app1.showapi.com/weixin_info/0327beff-34d8-49d4-9dcc-cdbba069c730.jpg
+             * userName : 篮球先锋报
+             */
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
+            private List<ContentlistBean> contentlist;
 
-        public String getUrl() {
-            return url;
-        }
+            public int getAllNum() {
+                return allNum;
+            }
 
-        public void setUrl(String url) {
-            this.url = url;
+            public void setAllNum(int allNum) {
+                this.allNum = allNum;
+            }
+
+            public int getAllPages() {
+                return allPages;
+            }
+
+            public void setAllPages(int allPages) {
+                this.allPages = allPages;
+            }
+
+            public int getCurrentPage() {
+                return currentPage;
+            }
+
+            public void setCurrentPage(int currentPage) {
+                this.currentPage = currentPage;
+            }
+
+            public int getMaxResult() {
+                return maxResult;
+            }
+
+            public void setMaxResult(int maxResult) {
+                this.maxResult = maxResult;
+            }
+
+            public List<ContentlistBean> getContentlist() {
+                return contentlist;
+            }
+
+            public void setContentlist(List<ContentlistBean> contentlist) {
+                this.contentlist = contentlist;
+            }
+
+            public static class ContentlistBean {
+                private String contentImg;
+                private String date;
+                private String id;
+                private String title;
+                private String typeId;
+                private String typeName;
+                private String url;
+                private String userLogo;
+                private String userLogo_code;
+                private String userName;
+
+                public String getContentImg() {
+                    return contentImg;
+                }
+
+                public void setContentImg(String contentImg) {
+                    this.contentImg = contentImg;
+                }
+
+                public String getDate() {
+                    return date;
+                }
+
+                public void setDate(String date) {
+                    this.date = date;
+                }
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getTitle() {
+                    return title;
+                }
+
+                public void setTitle(String title) {
+                    this.title = title;
+                }
+
+                public String getTypeId() {
+                    return typeId;
+                }
+
+                public void setTypeId(String typeId) {
+                    this.typeId = typeId;
+                }
+
+                public String getTypeName() {
+                    return typeName;
+                }
+
+                public void setTypeName(String typeName) {
+                    this.typeName = typeName;
+                }
+
+                public String getUrl() {
+                    return url;
+                }
+
+                public void setUrl(String url) {
+                    this.url = url;
+                }
+
+                public String getUserLogo() {
+                    return userLogo;
+                }
+
+                public void setUserLogo(String userLogo) {
+                    this.userLogo = userLogo;
+                }
+
+                public String getUserLogo_code() {
+                    return userLogo_code;
+                }
+
+                public void setUserLogo_code(String userLogo_code) {
+                    this.userLogo_code = userLogo_code;
+                }
+
+                public String getUserName() {
+                    return userName;
+                }
+
+                public void setUserName(String userName) {
+                    this.userName = userName;
+                }
+            }
         }
     }
 }

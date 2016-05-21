@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/colorWhite"
+     >
+    <LinearLayout
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="120dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="0dp">
+            <com.example.richie.liftassistant.widget.CircleImageView
+                android:src="@drawable/icon_title_recyclerview"
+                android:layout_centerInParent="true"
+                android:id="@+id/img_title"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorBlack"
+                android:gravity="center"
+                android:text="来自"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_title_name"
+                android:layout_marginLeft="5dp"
+                android:text="星座控"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="6"
+            android:layout_height="0dp">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_content"
+                android:textSize="18dp"
+                android:textColor="@color/colorBlack"
+                android:text="别被骗了!真实的12星座是这样子滴别被骗了!样子滴"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:layout_height="0dp"
+            android:layout_width="match_parent">
+            <TextView
+                android:text="发布日期:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tv_data"
+                android:text="2016-05-21 13:48:00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="120dp">
+        <ImageView
+            android:id="@+id/img_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_weight="8"
+            android:layout_height="0dp" />
+        <ImageView
+            android:layout_weight="2"
+            android:src="@mipmap/ic_feedback_grey"
+            android:layout_gravity="right"
+            android:layout_width="20dp"
+            android:layout_height="0dp" />
+    </LinearLayout>
+</LinearLayout>

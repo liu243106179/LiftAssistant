@@ -7,5 +7,7 @@
     <color name="colorLightGrey">#DCDCDC</color>
     <color name="colorDarkGray">#A9A9A9</color>
     <color name="colorDodgerBlue">#1E90FF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGhostWhite">#F8F8FF</color>
 
 </resources>
