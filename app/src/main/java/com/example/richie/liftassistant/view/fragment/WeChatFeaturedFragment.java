@@ -12,37 +12,26 @@ import android.view.ViewGroup;
 
 import com.example.richie.liftassistant.R;
 import com.example.richie.liftassistant.adapter.WeChatFeatureRecyclerAdapter;
-import com.example.richie.liftassistant.api.ApiImpl;
-import com.example.richie.liftassistant.bean.WeChatFeaturedResult;
+import com.example.richie.liftassistant.model.bean.WeChatFeaturedResult;
+import com.example.richie.liftassistant.model.http.HttpMethods;
 import com.example.richie.liftassistant.widget.DividerItemDecoration;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Subscriber;
 
 /**
- * 这个界面展示微信精选文章列表
+ * 微信精选文章
  * Created by richie on 2016/5/18.
  */
 public class WeChatFeaturedFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
-//    @BindView(R.id.recycler_view)
-//    RecyclerView recyclerView;
-//    @BindView(R.id.swipe_refresh_widget)
-//    SwipeRefreshLayout swipeRefreshWidget;
-
-    private int mPage;
-    private static final String BASE_URL = "http://route.showapi.com";
+    private Subscriber subscriber;
     private static final String API_SIGN = "5aa5b8300af74d6e90b0562865cb2dc5";
     private static final String APP_ID = "19276";
     private String page = "1";
-    private WeChatFeaturedResult result;
+    private int mPage;
     private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public static WeChatFeaturedFragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -64,50 +53,57 @@ public class WeChatFeaturedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.featurefragment_page, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        initData();
+        initSwipeRefreshLayout();
         return view;
     }
 
+    private void initSwipeRefreshLayout() {
+        //设置圆圈背景颜色
+        swipeRefreshLayout.setBackgroundColor(getResources().getColor(R.color.colorGhostWhite));
+        //设置进度动画颜色
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorDodgerBlue));
+        //设置进度偏移量
+        swipeRefreshLayout.setProgressViewOffset(false,0,100);
+        //设置swipeRefreshLayout item 点击事件
+        swipeRefreshLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initData();
+            }
+        });
+    }
 
-
-    private void setAdapter() {
+    private void setAdapter(WeChatFeaturedResult weChatFeaturedResult) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration());
-        mRecyclerView.setAdapter(new WeChatFeatureRecyclerAdapter(getActivity(), result));
+        mRecyclerView.setAdapter(new WeChatFeatureRecyclerAdapter(getActivity(), weChatFeaturedResult));
     }
 
     private void initData() {
-        //1.创建Retrofit对象
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())//添加 json 转换器
-                .baseUrl(BASE_URL)//主机地址
-                .build();
-
-        //2.创建访问API的请求
-        ApiImpl.GetWeChatChoice service = retrofit.create(ApiImpl.GetWeChatChoice.class);
-        Call<WeChatFeaturedResult> call = service.getResult(APP_ID, API_SIGN, page);
-
-
-        //3.发送请求
-        call.enqueue(new Callback<WeChatFeaturedResult>() {
+        subscriber = new Subscriber<WeChatFeaturedResult>() {
             @Override
-            public void onResponse(Call<WeChatFeaturedResult> call, Response<WeChatFeaturedResult> response) {
-                //4.处理结果
-                if (response.isSuccessful()) {
-                    result = response.body();
-                    if (result != null) {
-                        setAdapter();
-                    }
-                }
+            public void onCompleted() {
+                swipeRefreshLayout.setRefreshing(true);
             }
 
             @Override
-            public void onFailure(Call<WeChatFeaturedResult> call, Throwable t) {
+            public void onError(Throwable e) {
 
             }
 
-        });
+            @Override
+            public void onNext(WeChatFeaturedResult weChatFeaturedResult) {
+                swipeRefreshLayout.setRefreshing(false);
+                setAdapter(weChatFeaturedResult);
+            }
+        };
+        HttpMethods.getInstance().getWeChatChoiceList(subscriber,APP_ID,API_SIGN,page);
     }
 
 
@@ -115,8 +111,10 @@ public class WeChatFeaturedFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.recycler_view:
+
                 break;
             case R.id.swipe_refresh_widget:
+
                 break;
         }
     }

@@ -9,10 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.richie.liftassistant.R;
-import com.example.richie.liftassistant.bean.WeChatFeaturedResult;
+import com.example.richie.liftassistant.model.bean.WeChatFeaturedResult;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 /**
  * Created by richie on 2016/5/21.
