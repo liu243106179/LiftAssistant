@@ -1,11 +1,15 @@
+
 package com.example.richie.liftassistant.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +17,25 @@ import android.view.ViewGroup;
 import com.example.richie.liftassistant.R;
 import com.example.richie.liftassistant.adapter.WeChatFeatureRecyclerAdapter;
 import com.example.richie.liftassistant.model.bean.WeChatFeaturedResult;
+import com.example.richie.liftassistant.model.http.ApiImpl;
 import com.example.richie.liftassistant.model.http.HttpMethods;
+import com.example.richie.liftassistant.view.activity.MainActivity;
+import com.example.richie.liftassistant.view.activity.WelcomeActivity;
 import com.example.richie.liftassistant.widget.DividerItemDecoration;
 
-import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Subscriber;
+import butterknife.OnClick;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
+import static com.example.richie.liftassistant.model.config.ApiConstant.BASE_URL;
+
 
 /**
  * 微信精选文章
@@ -26,7 +44,7 @@ import rx.Subscriber;
 public class WeChatFeaturedFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
     private Subscriber subscriber;
-    private static final String API_SIGN = "5aa5b8300af74d6e90b0562865cb2dc5";
+    private static final String API_SIGN = "C1D3D88659575EADCE68DEB0059F3BFF";
     private static final String APP_ID = "19276";
     private String page = "1";
     private int mPage;
@@ -53,7 +71,16 @@ public class WeChatFeaturedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.featurefragment_page, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
         initSwipeRefreshLayout();
+
+        swipeRefreshLayout.setRefreshing(true);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                initData();
+            }
+        }, 2000);
         return view;
     }
 
@@ -71,12 +98,18 @@ public class WeChatFeaturedFragment extends Fragment {
 
             }
         });
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                initData();
-            }
-        });
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                //3s后，执行run方法启动主界面Activity
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                    }
+//                }, 2000);
+//            }
+//        });
     }
 
     private void setAdapter(WeChatFeaturedResult weChatFeaturedResult) {
@@ -86,24 +119,64 @@ public class WeChatFeaturedFragment extends Fragment {
     }
 
     private void initData() {
-        subscriber = new Subscriber<WeChatFeaturedResult>() {
+        swipeRefreshLayout.setRefreshing(false);
+//        subscriber = new Subscriber<WeChatFeaturedResult>() {
+//            @Override
+//            public void onCompleted() {
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            public void onNext(WeChatFeaturedResult weChatFeaturedResult) {
+////                swipeRefreshLayout.setRefreshing(false);
+//                setAdapter(weChatFeaturedResult);
+//            }
+//        };
+//        HttpMethods.getInstance().getWeChatChoiceList(subscriber,APP_ID,API_SIGN,page);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        ApiImpl.GetWeChatChoiceService service = retrofit.create(ApiImpl.GetWeChatChoiceService.class);
+        Call<WeChatFeaturedResult> call = service.getWeChatChoiceList(APP_ID, API_SIGN,"1");
+        call.enqueue(new Callback<WeChatFeaturedResult>() {
             @Override
-            public void onCompleted() {
-                swipeRefreshLayout.setRefreshing(true);
+            public void onResponse(Call<WeChatFeaturedResult> call, Response<WeChatFeaturedResult> response) {
+                setAdapter(response.body());
             }
 
             @Override
-            public void onError(Throwable e) {
-
+            public void onFailure(Call<WeChatFeaturedResult> call, Throwable t) {
+                Log.e("Throwable",t.getMessage());
             }
-
-            @Override
-            public void onNext(WeChatFeaturedResult weChatFeaturedResult) {
-                swipeRefreshLayout.setRefreshing(false);
-                setAdapter(weChatFeaturedResult);
-            }
-        };
-        HttpMethods.getInstance().getWeChatChoiceList(subscriber,APP_ID,API_SIGN,page);
+        });
+//        service.getWeChatChoiceList(APP_ID, API_SIGN,"1")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<WeChatFeaturedResult>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(WeChatFeaturedResult weChatFeaturedResult) {
+//                        setAdapter(weChatFeaturedResult);
+//                    }
+//                });
     }
 
 
