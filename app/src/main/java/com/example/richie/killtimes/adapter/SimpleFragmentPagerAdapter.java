@@ -1,12 +1,12 @@
-package com.example.richie.liftassistant.adapter;
+package com.example.richie.killtimes.adapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.richie.liftassistant.view.fragment.WeatherFragment;
-import com.example.richie.liftassistant.view.fragment.WeChatFeaturedFragment;
+import com.example.richie.killtimes.view.fragment.WeatherFragment;
+import com.example.richie.killtimes.view.fragment.WeChatFeaturedFragment;
 
 /**
  * Fragment 适配器

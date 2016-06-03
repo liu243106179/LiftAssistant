@@ -1,4 +1,4 @@
-package com.example.richie.liftassistant.adapter;
+package com.example.richie.killtimes.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.richie.liftassistant.R;
-import com.example.richie.liftassistant.model.bean.WeChatFeaturedResult;
+import com.example.richie.killtimes.R;
+import com.example.richie.killtimes.model.bean.WeChatFeaturedResult;
 import com.squareup.picasso.Picasso;
 
 /**

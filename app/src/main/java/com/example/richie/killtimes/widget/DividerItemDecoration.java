@@ -1,4 +1,4 @@
-package com.example.richie.liftassistant.widget;
+package com.example.richie.killtimes.widget;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

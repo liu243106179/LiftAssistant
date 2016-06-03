@@ -1,4 +1,4 @@
-package com.example.richie.liftassistant.base;
+package com.example.richie.killtimes.base;
 
 import android.app.Activity;
 import android.os.Build;

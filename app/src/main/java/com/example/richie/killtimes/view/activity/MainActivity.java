@@ -1,4 +1,4 @@
-package com.example.richie.liftassistant.view.activity;
+package com.example.richie.killtimes.view.activity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -18,8 +18,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.example.richie.liftassistant.R;
-import com.example.richie.liftassistant.adapter.SimpleFragmentPagerAdapter;
+import com.example.richie.killtimes.R;
+import com.example.richie.killtimes.adapter.SimpleFragmentPagerAdapter;
 
 
 public class MainActivity extends AppCompatActivity

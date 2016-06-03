@@ -1,10 +1,10 @@
-package com.example.richie.liftassistant.view.activity;
+package com.example.richie.killtimes.view.activity;
 
 import android.os.Bundle;
 import android.webkit.WebView;
 
-import com.example.richie.liftassistant.R;
-import com.example.richie.liftassistant.base.BaseActivity;
+import com.example.richie.killtimes.R;
+import com.example.richie.killtimes.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,11 +1,11 @@
-package com.example.richie.liftassistant.view.activity;
+package com.example.richie.killtimes.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.richie.liftassistant.R;
-import com.example.richie.liftassistant.base.BaseActivity;
+import com.example.richie.killtimes.R;
+import com.example.richie.killtimes.base.BaseActivity;
 
 /**
  * 欢迎界面,对数据进行预加载,嗯 暂时就这样吧

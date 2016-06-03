@@ -1,7 +1,6 @@
 
-package com.example.richie.liftassistant.view.fragment;
+package com.example.richie.killtimes.view.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -14,27 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.richie.liftassistant.R;
-import com.example.richie.liftassistant.adapter.WeChatFeatureRecyclerAdapter;
-import com.example.richie.liftassistant.model.bean.WeChatFeaturedResult;
-import com.example.richie.liftassistant.model.http.ApiImpl;
-import com.example.richie.liftassistant.model.http.HttpMethods;
-import com.example.richie.liftassistant.view.activity.MainActivity;
-import com.example.richie.liftassistant.view.activity.WelcomeActivity;
-import com.example.richie.liftassistant.widget.DividerItemDecoration;
+import com.example.richie.killtimes.R;
+import com.example.richie.killtimes.adapter.WeChatFeatureRecyclerAdapter;
+import com.example.richie.killtimes.model.bean.WeChatFeaturedResult;
+import com.example.richie.killtimes.model.http.ApiImpl;
+import com.example.richie.killtimes.widget.DividerItemDecoration;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Subscriber;
 import butterknife.OnClick;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
-import static com.example.richie.liftassistant.model.config.ApiConstant.BASE_URL;
+import static com.example.richie.killtimes.model.config.ApiConstant.BASE_URL;
 
 
 /**

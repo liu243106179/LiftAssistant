@@ -1,4 +1,4 @@
-package com.example.richie.liftassistant.model.config;
+package com.example.richie.killtimes.model.config;
 
 /**
  * Created by richie on 2016/6/1.

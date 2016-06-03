@@ -1,4 +1,4 @@
-package com.example.richie.liftassistant.model.bean;
+package com.example.richie.killtimes.model.bean;
 
 
 import java.util.List;

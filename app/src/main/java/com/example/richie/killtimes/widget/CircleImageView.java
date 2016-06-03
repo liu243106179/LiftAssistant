@@ -1,4 +1,4 @@
-package com.example.richie.liftassistant.widget;
+package com.example.richie.killtimes.widget;
 
 /**
  * 自定义圆形ImageView

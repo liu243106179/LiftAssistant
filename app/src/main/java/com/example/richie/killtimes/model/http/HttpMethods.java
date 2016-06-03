@@ -1,6 +1,4 @@
-package com.example.richie.liftassistant.model.http;
-
-import com.example.richie.liftassistant.model.bean.WeChatFeaturedResult;
+package com.example.richie.killtimes.model.http;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,11 +6,8 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
-import static com.example.richie.liftassistant.model.config.ApiConstant.BASE_URL;
+import static com.example.richie.killtimes.model.config.ApiConstant.BASE_URL;
 
 /**
  * Created by richie on 2016/6/1.
@@ -54,11 +49,11 @@ public class HttpMethods {
      * @param my_Secret 签名
      * @param page 第几页
      */
-    public void getWeChatChoiceList(Subscriber<WeChatFeaturedResult> subscriber, String my_appId, String my_Secret,String page){
-        service.getWeChatChoiceList(my_appId, my_Secret,page)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber);
-    }
+//    public void getWeChatChoiceList(Subscriber<WeChatFeaturedResult> subscriber, String my_appId, String my_Secret,String page){
+//        service.getWeChatChoiceList(my_appId, my_Secret,page)
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(subscriber);
+//    }
 }
